@@ -1,0 +1,38 @@
+subnet <%= subnet %> netmask <%= netmask %> {
+<% if ! imageserver.to_s.empty? -%>
+  # imageserver is the IP address of your SystemImager image server
+  option imageserver "<%= imageserver %>";
+
+  # log-servers
+  option log-servers <%= imageserver %>;
+
+  # next-server is your network boot server
+  next-server <%= imageserver %>;
+
+<% end -%>
+<% if ! imageserver_name.to_s.empty? -%>
+  # imageserver_name is the hostname of your SystemImager image server
+  option imageserver_name "<%= imageserver_name %>";
+
+<% end -%>
+<% if ! router.to_s.empty? -%>
+  # router is the default gateway
+  option routers <%= router %>;
+
+<% end -%>
+<% if ! range_start.to_s.empty? and ! range_end.to_s.empty? -%>
+  range <%= range_start %> <%= range_end %>;
+
+<% end -%>
+<% if ! domain_name.to_s.empty? -%>
+  option domain-name "<%= domain_name %>";
+
+<% end -%>
+<% if ! domain_name_servers.to_s.empty? -%>
+  # domain-name-servers are the dns servers (comma seperated list)
+  option domain-name-servers <%= domain_name_servers %>;
+
+<% end -%>
+}
+
+
